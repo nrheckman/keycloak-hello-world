@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group = "xyz.heckman.keycloak"
+group = "xyz.heckman.keycloak.demo"
 version = "0.0.1"
 
 
