@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = "xyz.heckman.keycloak"
+version = "0.0.1"
+
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly "org.keycloak:keycloak-core:11.0.2"
+    compileOnly "org.keycloak:keycloak-server-spi:11.0.2"
+    compileOnly "org.keycloak:keycloak-server-spi-private:11.0.2"
+    compileOnly "org.keycloak:keycloak-services:11.0.2"
+    compileOnly "org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_2.1_spec:2.0.1.Final"
+}
+
+war {
+    doFirst {
+        manifest {
+            attributes('Dependencies': 'org.keycloak.keycloak-services')
+        }
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
